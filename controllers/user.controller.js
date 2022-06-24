@@ -13,10 +13,7 @@ class UserController {
         sameSite: "none",
         secure: true,
       })
-      res.cookie("accessToken", userData.accessToken, {
-        sameSite: "none",
-        secure: true,
-      })
+      res.cookie("accessToken", userData.accessToken)
       return res.json(userData.user)
     } catch (e) {
       return res.json(e)
@@ -43,10 +40,7 @@ class UserController {
         sameSite: "none",
         secure: true,
       })
-      res.cookie("accessToken", userData.accessToken, {
-        sameSite: "none",
-        secure: true,
-      })
+      res.cookie("accessToken", userData.accessToken)
       return res.json(userData.user)
     } catch (e) {
       errorHandler(res, e)
@@ -74,10 +68,7 @@ class UserController {
         sameSite: "none",
         secure: true,
       })
-      res.cookie("accessToken", tokens.accessToken, {
-        sameSite: "none",
-        secure: true,
-      })
+      res.cookie("accessToken", tokens.accessToken)
       return res.json({
         user: data.user,
       })
