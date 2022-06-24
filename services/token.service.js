@@ -2,13 +2,12 @@ var jwt = require("jsonwebtoken")
 
 class TokenService {
   static generateTokens(data) {
-    console.log("generate token")
     // jwt.sign({
     //   data: 'foobar'
     // }, 'secret', { expiresIn: '1h' });
     const accessToken = jwt.sign(
       { user: data },
-      process.env._AUTH_JWT_ACCESS_SECRET,
+      process.env.AUTH_JWT_ACCESS_SECRET,
       {
         expiresIn: "24h",
       }

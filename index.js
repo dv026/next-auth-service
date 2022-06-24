@@ -4,6 +4,7 @@ const router = require("./router/index")
 var cors = require("cors")
 var cookieParser = require("cookie-parser")
 const app = express()
+var http = require("http")
 var https = require("https")
 var fs = require("fs")
 require("dotenv").config()
@@ -33,26 +34,27 @@ app.use(cors({ credentials: true, origin: process.env.AUTH_CLIENT_URL }))
 app.use(express.json())
 app.use("/api", router)
 
-let httpsOptions = {}
-if (process.env.AUTH_SSL_ENABLED) {
-  httpsOptions = {
+if (process.env.AUTH_SSL_ENABLED === "true") {
+  const httpsOptions = {
     key: fs.readFileSync(process.env.AUTH_CERTIFICATE_KEY_PATH),
     cert: fs.readFileSync(process.env.AUTH_CERTIFICATE_PEM_PATH),
   }
+  https.createServer(httpsOptions, app).listen(5001, () => {
+    console.log("server running at " + 5001)
+  })
+} else {
+  http.createServer({}, app).listen(5001, () => {
+    console.log("server running at ", 5001)
+  })
 }
-
-const server = https.createServer(httpsOptions, app).listen(5001, () => {
-  console.log("server running at " + 5001)
-})
 
 const start = async () => {
   try {
-    server()
     await mongoose.connect(process.env.AUTH_DB_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
-    // app.listen(8000, () => console.log("started on ", 8000))
+    // app.listen(5001, () => console.log("started on ", 5001))
   } catch (e) {
     console.log(e)
   }
