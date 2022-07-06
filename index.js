@@ -11,21 +11,21 @@ require("dotenv").config()
 
 app.use(cookieParser())
 
-// const corsConfig = {
-//   origin: true,
-//   credentials: true,
-// }
+const corsConfig = {
+  origin: true,
+  credentials: true,
+}
 
-// app.use(cors(corsConfig))
-// app.options("*", cors(corsConfig))
+app.use(cors(corsConfig))
+app.options("*", cors(corsConfig))
 
-app.use(
-  cors({
-    credentials: true,
-    origin: process.env.AUTH_CLIENT_URL,
-    // exposedHeaders: ["set-cookie"],
-  })
-)
+// app.use(
+//   cors({
+//     credentials: true,
+//     origin: process.env.AUTH_CLIENT_URL,
+//     // exposedHeaders: ["set-cookie"],
+//   })
+// )
 app.use(express.json())
 app.use("/api", router)
 
