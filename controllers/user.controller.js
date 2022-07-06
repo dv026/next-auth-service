@@ -74,6 +74,7 @@ class UserController {
         httpOnly: false,
         sameSite: "none",
         secure: true,
+        maxAge: 30 * 24 * 60,
       })
       // res.headers["access-control-expose-headers"] = "Set-Cookie"
       // res.cookie("refreshToken", tokens.refreshToken, {
