@@ -75,7 +75,7 @@ class UserController {
         secure: true,
       })
       res.cookie("accessToken", tokens.accessToken, {
-        httpOnly: false,
+        // httpOnly: false,
         sameSite: "none",
         secure: true,
       })
