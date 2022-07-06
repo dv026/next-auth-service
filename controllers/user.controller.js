@@ -16,6 +16,7 @@ class UserController {
       res.cookie("accessToken", userData.accessToken, {
         httpOnly: false,
         sameSite: "none",
+        secure: true,
       })
       return res.json(userData.user)
     } catch (e) {
@@ -76,7 +77,7 @@ class UserController {
         secure: true,
       })
       res.cookie("accessToken", tokens.accessToken, {
-        // httpOnly: false,
+        httpOnly: false,
         sameSite: "none",
         secure: true,
       })
