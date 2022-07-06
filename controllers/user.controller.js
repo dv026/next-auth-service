@@ -4,6 +4,7 @@ const errorHandler = require("../utils/error-handler")
 
 class UserController {
   async login(req, res, next) {
+    console.log("login")
     try {
       const { username, password } = req.body
       const userData = await userService.login(username, password)

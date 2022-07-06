@@ -31,6 +31,7 @@ require("dotenv").config()
 // app.use(express.cookieParser());
 // app.use(cors({ credentials: true, origin: process.env.AUTH_CLIENT_URL }))
 app.use(cookieParser())
+app.set("trust proxy", 1)
 // app.use(cors({ credentials: true }))
 app.use(
   cors({
