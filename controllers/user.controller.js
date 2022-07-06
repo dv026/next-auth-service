@@ -7,12 +7,12 @@ class UserController {
     try {
       const { username, password } = req.body
       const userData = await userService.login(username, password)
-      res.cookie("refreshToken", userData.refreshToken, {
-        maxAge: 30 * 24 * 60 * 60 * 1000,
-        httpOnly: true,
-        sameSite: "none",
-        secure: true,
-      })
+      // res.cookie("refreshToken", userData.refreshToken, {
+      //   maxAge: 30 * 24 * 60 * 60 * 1000,
+      //   httpOnly: true,
+      //   sameSite: "none",
+      //   secure: true,
+      // })
       res.cookie("accessToken", userData.accessToken, {
         httpOnly: false,
         sameSite: "none",
@@ -69,18 +69,18 @@ class UserController {
         throw new Error("token does not contain inf")
       }
       const tokens = TokenService.generateTokens(data.user)
-
-      res.cookie("refreshToken", tokens.refreshToken, {
-        maxAge: 30 * 24 * 60 * 60 * 1000,
-        httpOnly: true,
-        sameSite: "none",
-        secure: true,
-      })
       res.cookie("accessToken", tokens.accessToken, {
         httpOnly: false,
         sameSite: "none",
         secure: true,
       })
+      // res.cookie("refreshToken", tokens.refreshToken, {
+      //   maxAge: 30 * 24 * 60 * 60 * 1000,
+      //   httpOnly: true,
+      //   sameSite: "none",
+      //   secure: true,
+      // })
+
       return res.json({
         user: data.user,
       })
