@@ -15,6 +15,7 @@ class UserController {
       })
       res.cookie("accessToken", userData.accessToken, {
         httpOnly: false,
+        sameSite: "none",
       })
       return res.json(userData.user)
     } catch (e) {
