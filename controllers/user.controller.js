@@ -8,18 +8,17 @@ class UserController {
     try {
       const { username, password } = req.body
       const userData = await userService.login(username, password)
-      // res.cookie("refreshToken", userData.refreshToken, {
-      //   maxAge: 30 * 24 * 60 * 60 * 1000,
-      //   httpOnly: true,
-      //   sameSite: "none",
-      //   secure: true,
-      // })
+      res.cookie("refreshToken", userData.refreshToken, {
+        maxAge: 30 * 24 * 60 * 60 * 1000,
+        httpOnly: true,
+        sameSite: "none",
+        secure: true,
+      })
       res.cookie("accessToken", userData.accessToken, {
         httpOnly: false,
         sameSite: "none",
         secure: true,
       })
-      // res.headers["access-control-expose-headers"] = "Set-Cookie"
       return res.json(userData.user)
     } catch (e) {
       return res.json(e)
@@ -77,13 +76,13 @@ class UserController {
         secure: true,
         maxAge: 30 * 24 * 60,
       })
-      // res.headers["access-control-expose-headers"] = "Set-Cookie"
-      // res.cookie("refreshToken", tokens.refreshToken, {
-      //   maxAge: 30 * 24 * 60 * 60 * 1000,
-      //   httpOnly: true,
-      //   sameSite: "none",
-      //   secure: true,
-      // })
+      res.headers["access-control-expose-headers"] = "Set-Cookie"
+      res.cookie("refreshToken", tokens.refreshToken, {
+        maxAge: 30 * 24 * 60 * 60 * 1000,
+        httpOnly: true,
+        sameSite: "none",
+        secure: true,
+      })
 
       return res.json({
         user: data.user,
