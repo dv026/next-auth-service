@@ -32,7 +32,13 @@ require("dotenv").config()
 // app.use(cors({ credentials: true, origin: process.env.AUTH_CLIENT_URL }))
 app.use(cookieParser())
 // app.use(cors({ credentials: true }))
-app.use(cors({ credentials: true, origin: process.env.AUTH_CLIENT_URL }))
+app.use(
+  cors({
+    credentials: true,
+    origin: process.env.AUTH_CLIENT_URL,
+    exposedHeaders: ["set-cookie"],
+  })
+)
 // app.use(cors({ credentials: true, origin: "*" }))
 app.use(express.json())
 app.use("/api", router)

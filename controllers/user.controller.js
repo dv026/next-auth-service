@@ -18,7 +18,7 @@ class UserController {
         sameSite: "none",
         secure: true,
       })
-      res.headers["access-control-expose-headers"] = "Set-Cookie"
+      // res.headers["access-control-expose-headers"] = "Set-Cookie"
       return res.json(userData.user)
     } catch (e) {
       return res.json(e)
@@ -75,7 +75,7 @@ class UserController {
         sameSite: "none",
         secure: true,
       })
-      res.headers["access-control-expose-headers"] = "Set-Cookie"
+      // res.headers["access-control-expose-headers"] = "Set-Cookie"
       // res.cookie("refreshToken", tokens.refreshToken, {
       //   maxAge: 30 * 24 * 60 * 60 * 1000,
       //   httpOnly: true,
