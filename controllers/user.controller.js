@@ -64,7 +64,9 @@ class UserController {
 
   async refresh(req, res) {
     try {
+      console.log("refresh start")
       const refreshToken = req.cookies.refreshToken
+      console.log("refresh token", refreshToken)
       if (!refreshToken) throw new Error("refresh token expires")
       const data = TokenService.verifyRefreshToken(refreshToken)
       if (!data) {
