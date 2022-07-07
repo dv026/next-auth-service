@@ -69,9 +69,11 @@ class UserController {
       console.log("refresh token", refreshToken)
       if (!refreshToken) throw new Error("refresh token expires")
       const data = TokenService.verifyRefreshToken(refreshToken)
+
       if (!data) {
         throw new Error("token does not contain inf")
       }
+      console.log("refresh token verified")
       const tokens = TokenService.generateTokens(data.user)
       res.cookie("accessToken", tokens.accessToken, {
         httpOnly: false,
@@ -79,14 +81,14 @@ class UserController {
         secure: true,
         maxAge: 30 * 24 * 60,
       })
-      res.headers["access-control-expose-headers"] = "Set-Cookie"
+      // res.headers["access-control?expose-headers"] = "Set-Cookie"
       res.cookie("refreshToken", tokens.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: true,
         sameSite: "none",
         secure: true,
       })
-
+      console.log("before return")
       return res.json({
         user: data.user,
       })
