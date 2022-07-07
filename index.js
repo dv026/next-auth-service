@@ -22,7 +22,7 @@ const corsConfig = {
 app.use(
   cors({
     credentials: true,
-    origin: process.env.AUTH_CLIENT_URL,
+    origin: "http://localhost",
   })
 )
 app.use(express.json())
