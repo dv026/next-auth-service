@@ -12,7 +12,7 @@ class TokenService {
         expiresIn: "24h",
       }
     )
-    console.log(accessToken)
+    // console.log(accessToken)
     const refreshToken = jwt.sign(
       { user: data },
       process.env.AUTH_JWT_REFRESH_SECRET,

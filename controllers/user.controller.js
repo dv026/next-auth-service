@@ -89,6 +89,7 @@ class UserController {
         secure: true,
       })
       console.log("before return")
+      console.log(data.user)
       return res.json({
         user: data.user,
       })
