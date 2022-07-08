@@ -10,7 +10,7 @@ class UserController {
       const userData = await userService.login(username, password)
       res.cookie("refreshToken", userData.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
-        httpOnly: false,
+        httpOnly: true,
         sameSite: "none",
         secure: true,
       })
