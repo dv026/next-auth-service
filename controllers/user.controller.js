@@ -28,9 +28,12 @@ class UserController {
 
   async checkAuth(req, res) {
     try {
-      const accessToken = req.cookies.accessToken
-      const data = TokenService.verifyAccessToken(accessToken)
-      return res.json(data)
+      const accessToken = req.headers["authentication"].split(" ")[1]
+      if (accessToken) {
+        const data = TokenService.verifyAccessToken(accessToken)
+        return res.json(data)
+      }
+      return req.status(401).end()
     } catch (e) {
       return res.status(401).end()
     }
