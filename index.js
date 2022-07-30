@@ -20,10 +20,16 @@ const corsConfig = {
 // app.options("*", cors(corsConfig))
 
 app.use(
-  cors({
-    credentials: true,
-    origin: "http://localhost:3000",
-  })
+  cors(
+    {
+      credentials: true,
+      origin: "http://localhost:3000",
+    },
+    {
+      credentials: true,
+      origin: "https://health-care-dv026.vercel.app",
+    }
+  )
 )
 app.use(express.json())
 app.use("/api", router)
